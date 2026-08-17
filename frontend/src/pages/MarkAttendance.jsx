@@ -377,12 +377,12 @@ export default function MarkAttendanceQR() {
             ))}
             <button
   onClick={() => {
-    setQrScanned(false);
-    setAttendanceDone(false);
-    setQrData(null);
-    setResult("");
-
-    goToPage("home");
+    setStep("qr");
+    setToken("");
+    setQrInfo(null);
+    setResults(null);
+    setMessage(null);
+    setLocationStatus(null);
   }}
   style={{
     ...btnPrimary,
