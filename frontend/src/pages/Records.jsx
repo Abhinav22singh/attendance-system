@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 export default function Records() {
   const [records, setRecords] = useState([]);
@@ -150,7 +151,7 @@ export default function Records() {
     }
 
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/attendance/");
+      const res = await axios.get(`${API_BASE_URL}/api/attendance/`);
       const all = res.data.records || [];
 
       const mine = all.filter((r) => {

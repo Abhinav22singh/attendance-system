@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import QRCode from "qrcode";
+import { API_BASE_URL } from "../config/api";
 
 export default function TeacherDashboard({ teacher, onLogout }) {
   const [subject, setSubject] = useState(teacher?.subjects?.[0] || "");
@@ -45,7 +46,7 @@ export default function TeacherDashboard({ teacher, onLogout }) {
     setLoadingRecords(true);
 
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/teacher/records/", {
+      const res = await axios.get(`${API_BASE_URL}/api/teacher/records/`, {
         params: { teacher_id: teacher.teacher_id },
       });
 
@@ -71,7 +72,7 @@ export default function TeacherDashboard({ teacher, onLogout }) {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/teacher/generate-qr/",
+        `${API_BASE_URL}/api/teacher/generate-qr/`,
         {
           teacher_id: teacher.teacher_id,
           subject,

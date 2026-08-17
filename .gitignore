@@ -1,5 +1,17 @@
+# === Secrets ===
+credentials.json
 .credentials.json
-pyvenv.cfg
+*.env
+.env
+.env.*
+!.env.example
+
+# === Databases ===
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+
+# === Python ===
 __pycache__/
 *.py[cod]
 *$py.class
@@ -29,11 +41,25 @@ MANIFEST
 *.spec
 *.whl
 *.dist-info/
-*.egg-info/
-*.manifest
-*.spec
-*.whl
-*.dist-info/
-*.egg-info/
-*.manifest
-*.spec
+pyvenv.cfg
+
+# === Node / frontend ===
+node_modules/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# === Editor / OS ===
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

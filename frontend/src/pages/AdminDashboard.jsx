@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import * as XLSX from "xlsx";
+import { API_BASE_URL } from "../config/api";
 
 export default function AdminDashboard({ onLogout }) {
   const [subjects, setSubjects] = useState([]);
@@ -29,7 +30,7 @@ export default function AdminDashboard({ onLogout }) {
 
   const fetchStats = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/stats/");
+      const res = await axios.get(`${API_BASE_URL}/api/stats/`);
       setSubjects(res.data.subjects || []);
     } catch (err) {
       console.log(err);
@@ -45,7 +46,7 @@ export default function AdminDashboard({ onLogout }) {
       if (reportSemester) params.semester = reportSemester;
       if (filterSubject) params.subject = filterSubject;
 
-      const res = await axios.get("http://127.0.0.1:8000/api/attendance/", {
+      const res = await axios.get(`${API_BASE_URL}/api/attendance/`, {
         params,
       });
 
@@ -59,7 +60,7 @@ export default function AdminDashboard({ onLogout }) {
 
   const fetchNotices = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/notices/");
+      const res = await axios.get(`${API_BASE_URL}/api/notices/`);
       setNotices(res.data.notices || []);
     } catch (err) {
       console.log(err);
@@ -117,7 +118,7 @@ export default function AdminDashboard({ onLogout }) {
     }
 
     try {
-      await axios.post("http://127.0.0.1:8000/api/notices/", noticeForm);
+      await axios.post(`${API_BASE_URL}/api/notices/`, noticeForm);
 
       setNoticeForm({
         title: "",
@@ -135,7 +136,7 @@ export default function AdminDashboard({ onLogout }) {
 
   const deleteNotice = async (row) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/notices/${row}/delete/`);
+      await axios.delete(`${API_BASE_URL}/api/notices/${row}/delete/`);
       fetchNotices();
     } catch (err) {
       console.log(err);

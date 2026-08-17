@@ -21,6 +21,12 @@ class AdminLoginView(APIView):
 
 
 class AdminVerifyView(APIView):
+    # The admin token issued by AdminLoginView carries no user_id claim, so
+    # DRF's globally configured JWTAuthentication would reject it before this
+    # view's own manual "Bearer " check ever runs. This view does its own
+    # verification, so it opts out of that authenticator.
+    authentication_classes = []
+
     def get(self, request):
         auth = request.headers.get('Authorization', '')
         if not auth.startswith('Bearer '):

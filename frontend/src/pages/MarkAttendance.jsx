@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { BrowserQRCodeReader } from "@zxing/browser";
+import { API_BASE_URL } from "../config/api";
 
 export default function MarkAttendanceQR() {
   const videoRef = useRef(null);
@@ -185,7 +186,7 @@ export default function MarkAttendanceQR() {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/teacher/mark-attendance/",
+        `${API_BASE_URL}/api/teacher/mark-attendance/`,
         { image, token }
       );
 

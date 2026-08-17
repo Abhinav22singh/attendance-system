@@ -1,3 +1,5 @@
+import json
+
 import gspread
 from google.oauth2.service_account import Credentials
 from django.conf import settings
@@ -8,11 +10,19 @@ SCOPES = [
 ]
 
 
-def get_sheet(tab_name):
-    creds = Credentials.from_service_account_file(
+def _get_credentials():
+    if settings.GOOGLE_SHEETS_CREDENTIALS_JSON:
+        info = json.loads(settings.GOOGLE_SHEETS_CREDENTIALS_JSON)
+        return Credentials.from_service_account_info(info, scopes=SCOPES)
+
+    return Credentials.from_service_account_file(
         str(settings.GOOGLE_SHEETS_CREDENTIALS),
         scopes=SCOPES,
     )
+
+
+def get_sheet(tab_name):
+    creds = _get_credentials()
 
     client = gspread.authorize(creds)
     spreadsheet = client.open(settings.GOOGLE_SHEET_NAME)

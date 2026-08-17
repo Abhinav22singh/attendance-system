@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 export default function TeacherLogin({ onLogin }) {
   const [teacherId, setTeacherId] = useState("");
@@ -21,7 +22,7 @@ export default function TeacherLogin({ onLogin }) {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/teacher/login/", {
+      const res = await axios.post(`${API_BASE_URL}/api/teacher/login/`, {
         teacher_id: teacherId,
         password
       });

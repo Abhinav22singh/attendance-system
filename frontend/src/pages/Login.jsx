@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 export default function Login({ onLogin, goToPage }) {
   const [rollNo, setRollNo] = useState("");
@@ -34,7 +35,7 @@ export default function Login({ onLogin, goToPage }) {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/student-login/", {
+      const res = await axios.post(`${API_BASE_URL}/api/student-login/`, {
         roll_no: rollNo.trim(),
         name: name.trim(),
       });

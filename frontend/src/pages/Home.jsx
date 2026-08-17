@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Hero from "../components/Hero";
 import NoticeBoard from "../components/NoticeBoard";
+import { API_BASE_URL } from "../config/api";
 
 export default function Home({ setPage, isLoggedIn }) {
   const [notices, setNotices] = useState([]);
@@ -19,7 +20,7 @@ export default function Home({ setPage, isLoggedIn }) {
 
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/notices/"
+        `${API_BASE_URL}/api/notices/`
       );
 
       const freshNotices = res.data.notices || [];

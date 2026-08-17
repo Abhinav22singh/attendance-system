@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 export default function Register({ onRegistered, goToPage }) {
   const videoRef = useRef(null);
@@ -99,7 +100,7 @@ export default function Register({ onRegistered, goToPage }) {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/register/", {
+      const res = await axios.post(`${API_BASE_URL}/api/register/`, {
         ...form,
         image: photo,
       });
