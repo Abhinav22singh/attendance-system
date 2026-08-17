@@ -101,10 +101,6 @@ export default function AdminLogin({ onLogin }) {
         >
           {loading ? "⏳ LOGGING IN..." : "🔓 LOGIN"}
         </button>
-
-        <p style={{ textAlign: "center", color: "#999", fontSize: "11px", marginTop: "16px" }}>
-          Default: admin / svit2024
-        </p>
       </div>
     </div>
   );
